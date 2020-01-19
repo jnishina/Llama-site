@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import "rbx/index.css";
 import 'typeface-roboto';
 import { Navbar, Container } from "rbx";
-import { Typography, makeStyles, Button } from '@material-ui/core';
+import { Typography, makeStyles, Button, Divider } from '@material-ui/core';
 import background from './images/background.jpeg';
 
 const homePageStyles = makeStyles(theme => ({
@@ -57,6 +57,21 @@ const homePageStyles = makeStyles(theme => ({
             color: '#363636',
             borderBottomColor: '#363636'
         }
+    },
+    contact: {
+        textAlign: 'center',
+        marginTop: 20
+    }, 
+    contactInfo: {
+        fontSize: 13,
+        marginTop: 7, 
+        marginBottom: -10
+    },
+    divider: {
+        backgroundColor: '#363636',
+        width: 100, 
+        display: 'inline-block',
+        marginTop: -10
     }
   }));
   
@@ -64,6 +79,7 @@ const homePageStyles = makeStyles(theme => ({
     const classes = homePageStyles();
     
     return (
+      <div>
       <div className={classes.background}>
         <div className={classes.overlay}>
         <Navbar className={classes.navbar}>
@@ -83,6 +99,15 @@ const homePageStyles = makeStyles(theme => ({
             <Typography variant="subtitle1" className={classes.buttonText}>Get started >></Typography>
         </Button>
         </div>
+      </div>
+      <div className={classes.contact}>
+          <Typography variant="subtitle1" className={classes.contactInfo}>Contact Us</Typography>
+          <Divider className={classes.divider}/>
+          <Typography variant="body1" className={classes.contactInfo}>
+            e: &nbsp; jordannishina2021@u.northwestern.edu <br/>
+            p: &nbsp; (808) 202-9580
+          </Typography>
+      </div>
       </div>
     );
   }
