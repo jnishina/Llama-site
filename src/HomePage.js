@@ -46,9 +46,12 @@ const homePageStyles = makeStyles(theme => ({
     navbar: {
         height: 60
     },
+    menu: {
+        marginLeft: 25
+    },
     navbarItem: {
         fontFamily: 'roboto',
-        marginLeft: 18,
+        marginRight: 18,
         marginBottom: 5,
         '&.is-tab:hover': {
             color: '#363636',
@@ -64,9 +67,13 @@ const homePageStyles = makeStyles(theme => ({
       <div className={classes.background}>
         <div className={classes.overlay}>
         <Navbar className={classes.navbar}>
-            <Navbar.Item className={classes.navbarItem} tab={true} onClick={pageswitch.homePageSwitch}>Home</Navbar.Item>
-            <Navbar.Item className={classes.navbarItem} tab={true} onClick={pageswitch.aboutPageSwitch}>About Us</Navbar.Item>
-            <Navbar.Item className={classes.navbarItem} tab={true} onClick={pageswitch.llamaPageSwitch}>Llama Collection</Navbar.Item>
+            <Navbar.Menu>
+                <Navbar.Segment className={classes.menu} align="start">
+                <Navbar.Item className={classes.navbarItem} tab={true} onClick={pageswitch.homePageSwitch}>Home</Navbar.Item>
+                <Navbar.Item className={classes.navbarItem} tab={true} onClick={pageswitch.aboutPageSwitch}>About Us</Navbar.Item>
+                <Navbar.Item className={classes.navbarItem} tab={true} onClick={pageswitch.llamaPageSwitch}>Llama Collection</Navbar.Item>
+                </Navbar.Segment>
+            </Navbar.Menu>
         </Navbar>
         <Typography variant="h1" className={classes.title}>Battle Llama</Typography>
         <Typography variant="subtitle1" className={classes.description}>
