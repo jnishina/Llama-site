@@ -69,7 +69,7 @@ const homePageStyles = makeStyles(theme => ({
     },
     divider: {
         backgroundColor: '#363636',
-        width: 100, 
+        width: 90, 
         display: 'inline-block',
         marginTop: -10
     }
