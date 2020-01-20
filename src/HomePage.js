@@ -46,7 +46,8 @@ const homePageStyles = makeStyles(theme => ({
     },
     contact: {
         textAlign: 'center',
-        marginTop: 20
+        marginTop: 20,
+        marginBottom: 20
     }, 
     contactInfo: {
         fontSize: 13,

@@ -17,23 +17,21 @@ const useStyles = makeStyles(theme => ({
     },
     image: {
       paddingTop: 10, 
-      paddingBottom: -20
+      height: 296,
     },
     divider: {
-      marginTop: 10
+      marginTop: 20
+    },
+    description: {
+      marginTop: 60
     },
     title: {
-      marginTop: -12, 
-      height: 60,
+      marginBottom: 10,
       fontSize: 15
     },
     price: {
       marginTop: 10,
       fontSize: 15
-    },
-    description: {
-      fontSize: 12,
-      paddingBottom: 5
     },
     sizes: {
       fontSize: 10,
@@ -46,24 +44,29 @@ const useStyles = makeStyles(theme => ({
 
 const LlamaList = ({llamas}) => {
     const classes = useStyles();
-    const sizes = ['S', 'M', 'L', 'XL']
+    const handlePrices = (price) => {
+      var formatted = price.toFixed(2);
+      return formatted
+    }
   
     return(
+      <Container>
       <Column.Group vcentered multiline className={classes.container}>
         {llamas.map(llama => 
                 <Column size="one-quarter">
                   <Card className={classes.card}>
                     <Card.Image className={classes.image}><img src={`/data/LlamaPics/${llama.sku}.jpg`} alt={llama.sku}/></Card.Image>
-                    <Card.Content key={llama.sku}> 
+                    <Card.Content key={llama.sku} className={classes.description}> 
                       <h5 className={classes.title}>
                         {llama.title}
                       </h5>
                       <Divider variant="middle" className={classes.divider}/>
-                      <h6 className={classes.price}>{`$${llama.price}`}</h6>
+                      <h6 className={classes.price}>{`$${handlePrices(llama.price)}`}</h6>
                     </Card.Content>
                   </Card>
                 </Column>)}
       </Column.Group>
+      </Container>
     );
   }
 
