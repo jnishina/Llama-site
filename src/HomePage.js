@@ -4,6 +4,7 @@ import 'typeface-roboto';
 import { Navbar, Container } from "rbx";
 import { Typography, makeStyles, Button, Divider } from '@material-ui/core';
 import background from './images/background.jpeg';
+import MenuBar from './MenuBar.js';
 
 const homePageStyles = makeStyles(theme => ({
     background: {
@@ -43,21 +44,6 @@ const homePageStyles = makeStyles(theme => ({
     buttonText: {
         fontSize: 30
     },
-    navbar: {
-        height: 60
-    },
-    menu: {
-        marginLeft: 25
-    },
-    navbarItem: {
-        fontFamily: 'roboto',
-        marginRight: 18,
-        marginBottom: 5,
-        '&.is-tab:hover': {
-            color: '#363636',
-            borderBottomColor: '#363636'
-        }
-    },
     contact: {
         textAlign: 'center',
         marginTop: 20
@@ -74,6 +60,7 @@ const homePageStyles = makeStyles(theme => ({
         marginTop: -10
     }
   }));
+
   
   const HomePage = ({pageswitch}) => {
     const classes = homePageStyles();
@@ -82,15 +69,7 @@ const homePageStyles = makeStyles(theme => ({
       <div>
       <div className={classes.background}>
         <div className={classes.overlay}>
-        <Navbar className={classes.navbar}>
-            <Navbar.Menu>
-                <Navbar.Segment className={classes.menu} align="start">
-                <Navbar.Item className={classes.navbarItem} tab={true} onClick={pageswitch.homePageSwitch}>Home</Navbar.Item>
-                <Navbar.Item className={classes.navbarItem} tab={true} onClick={pageswitch.aboutPageSwitch}>About Us</Navbar.Item>
-                <Navbar.Item className={classes.navbarItem} tab={true} onClick={pageswitch.llamaPageSwitch}>Llama Collection</Navbar.Item>
-                </Navbar.Segment>
-            </Navbar.Menu>
-        </Navbar>
+        <MenuBar pageswitch={pageswitch}/>
         <Typography variant="h1" className={classes.title}>Battle Llama</Typography>
         <Typography variant="subtitle1" className={classes.description}>
             Find the perfect llama to ride into battle
