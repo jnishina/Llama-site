@@ -13,7 +13,7 @@ const homePageStyles = makeStyles(theme => ({
         backgroundSize: 'cover',
         backgroundRepeat: 'no-repeat',
         backgroundAttachment: 'fixed',
-        height: '100%',
+        minWidth: 700
     },
     title: {
         color: 'white',
@@ -68,9 +68,9 @@ const homePageStyles = makeStyles(theme => ({
     
     return (
       <div>
+        <MenuBar pageswitch={pageswitch}/>
       <div className={classes.background}>
         <div className={classes.overlay}>
-        <MenuBar pageswitch={pageswitch}/>
         <Typography variant="h1" className={classes.title}>Battle Llama</Typography>
         <Typography variant="subtitle1" className={classes.description}>
             Find the perfect llama to ride into battle
