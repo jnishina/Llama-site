@@ -63,7 +63,7 @@ const homePageStyles = makeStyles(theme => ({
   }));
 
   
-  const HomePage = ({pageswitch}) => {
+  const HomePage = ({pageswitch, cartstate}) => {
     const classes = homePageStyles();
     
     return (
@@ -76,7 +76,7 @@ const homePageStyles = makeStyles(theme => ({
             Find the perfect llama to ride into battle
         </Typography>
         <Button className={classes.button} onClick={pageswitch.llamaPageSwitch}>
-            <Typography variant="subtitle1" className={classes.buttonText}>Get started >></Typography>
+            <Typography variant="subtitle1" className={classes.buttonText}>Start shopping >></Typography>
         </Button>
         </div>
       </div>

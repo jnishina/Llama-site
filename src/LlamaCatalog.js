@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import "rbx/index.css";
 import 'typeface-roboto';
 import { Navbar, Container, Column, Card, Button} from "rbx";
-import { Typography, makeStyles, Divider } from '@material-ui/core';
+import { Typography, makeStyles, Divider, Drawer, List, ListItem, ListItemText } from '@material-ui/core';
 import MenuBar from './MenuBar.js';
 import { minWidth } from '@material-ui/system';
 
@@ -10,7 +10,7 @@ import { minWidth } from '@material-ui/system';
 const useStyles = makeStyles(theme => ({
     group: {
       marginTop: 20,
-      marginLeft: 26,
+      marginLeft: 25,
       minWidth: 1024
     },
     card: {
@@ -51,15 +51,25 @@ const useStyles = makeStyles(theme => ({
       fontSize: 15,
       paddingLeft: 10,
       paddingRight: 10
+    },
+    list: {
+      width: 250,
     }
   }));
 
-const LlamaList = ({llamas}) => {
+const handlePrices = (price) => {
+    var formatted = price.toFixed(2);
+    return formatted;
+};
+
+
+const LlamaList = ({llamas, cartstate, drawerstate}) => {
     const classes = useStyles();
-    const handlePrices = (price) => {
-      var formatted = price.toFixed(2);
-      return formatted
-    }
+
+    const addToCart = (llama) => {
+      cartstate.setCart(cartstate.cart.concat(llama));
+      console.log(cartstate.cart);
+    };
   
     return(
       <Column.Group vcentered multiline className={classes.group}>
@@ -73,23 +83,55 @@ const LlamaList = ({llamas}) => {
                       </h5>
                       <Divider variant="middle" className={classes.divider}/>
                       <h6 className={classes.price}>{`$${handlePrices(llama.price)}`}</h6>
-                      <Button className={classes.button}><Typography className={classes.buttonText}>Add to cart</Typography></Button>
+                      <Button className={classes.button} onClick={() => {addToCart(llama); drawerstate.toggleDrawer('right', true)}}>
+                        <Typography className={classes.buttonText}>Add to cart</Typography>
+                      </Button>
                     </Card.Content>
                   </Card>
                 </Column>)}
       </Column.Group>
     );
-  }
+  };
 
-const LlamaCatalog = ({pageswitch, llamas}) => {
+const LlamaCatalog = ({pageswitch, llamas, cartstate}) => {
   const classes = useStyles();  
+  const [drawer, setDrawer] = React.useState({
+    right: false
+  });
+
+  const toggleDrawer = (side, open) => event => {
+    console.log("hi");
+    if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
+      return;
+    }
+
+
+    setDrawer({ ...drawer, [side]: open });
+  };
+
+  const sideList = side => (
+    <div
+      className={classes.list}
+      role="presentation"
+      onClick={toggleDrawer(side, false)}
+      onKeyDown={toggleDrawer(side, false)}
+    >
+      <List>
+        <ListItemText primary={'hello'} />
+      </List>
+    </div>
+  );
+
 
   return (
         <div>
+            <Drawer anchor="right" open={drawer.right} onClose={toggleDrawer('right', false)}>
+              {sideList('right')}
+            </Drawer>
             <MenuBar pageswitch={pageswitch}/>
-            <LlamaList llamas={llamas}/>
+            <LlamaList llamas={llamas} cartstate={cartstate} drawerstate={{drawer, setDrawer, toggleDrawer}}/>
         </div>
     );
-}
+};
 
 export default LlamaCatalog;
